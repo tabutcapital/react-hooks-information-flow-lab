@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Item from "./Item";
+import Filter from "./Filter";
 
 function ShoppingList({ items }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -7,6 +8,12 @@ function ShoppingList({ items }) {
   function handleCategoryChange(event) {
     setSelectedCategory(event.target.value);
   }
+
+  
+
+  const filteredItems = selectedCategory === "All"
+  ? items
+  : items.filter((item) => item.category === selectedCategory);
 
   const itemsToDisplay = items.filter((item) => {
     if (selectedCategory === "All") return true;
